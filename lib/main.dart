@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 void main() {
   runApp(const App());
 }
@@ -14,17 +15,24 @@ class App extends StatelessWidget {
     return MaterialApp(
       // ignore: prefer_const_literals_to_create_immutables
       localizationsDelegates: [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ],
-  // ignore: prefer_const_literals_to_create_immutables
-  supportedLocales: [
-    Locale('fa', ''), // fa
-  ],
-  home: Scaffold(
-    appBar: AppBar(title: const Text("امیر سخن"),),
-  ),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      // ignore: prefer_const_literals_to_create_immutables
+      supportedLocales: [
+        Locale('fa', ''), // fa
+      ],
+
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+        fontFamily: "yekan",
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("امیرِ سخن"),
+        ),
+      ),
     );
   }
 }
