@@ -1,15 +1,26 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:amire_sokhan/main_screen.dart';
+import 'package:amire_sokhan/widget_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const App());
+  runApp(ChangeNotifierProvider(
+    create: (_) => WidgetProvider(),
+    child: const App(),
+  ));
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,11 +39,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.teal,
         fontFamily: "yekan",
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("امیرِ سخن"),
-        ),
-      ),
+      home: MainScreen(),
     );
   }
 }
