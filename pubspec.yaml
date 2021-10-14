@@ -17,7 +17,13 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+
+  #sqlite
   sqflite: ^2.0.0+4
+
+  #localization
+  flutter_localizations:
+    sdk: flutter         
 
 dev_dependencies:
   flutter_test:
