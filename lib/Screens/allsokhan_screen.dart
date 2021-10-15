@@ -21,14 +21,25 @@ class AllSokhanScreen extends StatelessWidget {
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                margin: const EdgeInsets.symmetric(vertical: 2),
+                margin: const EdgeInsets.symmetric(vertical: 1),
                 color: teal[50],
                 child: TextButton(
                   child: ListTile(
                     title: Text(snapshot.data[index].arabic),
-                    leading: Image.asset(vectorIcon,color: teal[900],),
+                    leading: Image.asset(
+                      vectorIcon,
+                      color: teal[900],
+                    ),
+                    trailing: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          snapshot.data[index].favourit == 1
+                              ? Icons.bookmark
+                              : Icons.bookmark_border_outlined,
+                          color: Colors.teal[500],
+                        )),
                   ),
-                  onPressed: (){},
+                  onPressed: () {},
                 ),
               );
             },

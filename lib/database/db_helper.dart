@@ -15,7 +15,7 @@ class DbHelper {
   // static String _colArabic = "arabic";
   // static String _colFarsi = "farsi";
   // static String _colRef = "refrence";
-  // static String _colFav = "favourit";
+  static const String colFav = "favourit";
 
   Future<Database> get db async => _database ??= await _initDb();
 
@@ -51,6 +51,16 @@ class DbHelper {
         : [];
     return allSokhanList;
   }
+
+Future<List<Sokhan>> getAllFavSokhan() async {
+    Database _dbClient = await db;
+    var allFavSokhan = await _dbClient.rawQuery("SELECT * FROM $table WHERE $colFav=?",[1]);
+    List<Sokhan> allFavSokhanList = allFavSokhan.isNotEmpty
+        ? allFavSokhan.map((e) => Sokhan.fromMap(e)).toList()
+        : [];
+    return allFavSokhanList;
+  }
+  
 
   Future<int> updateFav(Sokhan sokhan) async {
     Database _dbClient = await db;
