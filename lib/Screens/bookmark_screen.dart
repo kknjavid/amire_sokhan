@@ -35,7 +35,7 @@ class BookmarkScreen extends StatelessWidget {
                     trailing: IconButton(
                         onPressed: () {
                           Provider.of<WidgetProvider>(context,listen: false )
-                        .updateBookmark(snapshot.data[index]);
+                        .updateBookmark(snapshot.data[index], const BookmarkScreen());
                         },
                         icon: Icon(
                           Icons.bookmark,

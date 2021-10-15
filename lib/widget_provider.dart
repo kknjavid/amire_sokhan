@@ -30,10 +30,11 @@ class WidgetProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateBookmark(var sokhan) {
+  void updateBookmark(var sokhan, Widget curWidget) {
     updateFavSokhan(sokhan);
     getAllFavSokhan = DbHelper.dbHelper.getAllFavSokhan();
     getAllSokhan = DbHelper.dbHelper.getAllSokhan();
+    widget = curWidget;
     notifyListeners();
   }
 }

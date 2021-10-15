@@ -36,7 +36,7 @@ class AllSokhanScreen extends StatelessWidget {
                     trailing: IconButton(
                         onPressed: () {
                            Provider.of<WidgetProvider>(context,listen: false )
-                        .updateBookmark(snapshot.data[index]);
+                        .updateBookmark(snapshot.data[index], const AllSokhanScreen());
                         },
                         icon: Icon(
                           snapshot.data[index].favourit == 1
