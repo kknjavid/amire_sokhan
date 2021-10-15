@@ -20,7 +20,7 @@ class BottomBar extends StatelessWidget {
         if (value >= 3) {
           SystemNavigator.pop();
         } else {
-          Provider.of<WidgetProvider>(context,listen: false).changeWidget(value);
+          Provider.of<WidgetProvider>(context,listen: false).changeWidgetFromBottomBar(value);
         }
       },
       // ignore: prefer_const_literals_to_create_immutables

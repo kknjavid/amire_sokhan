@@ -7,8 +7,12 @@ class WidgetProvider extends ChangeNotifier {
   int index = 0;
   Widget widget = const BookmarkScreen();
 
-  void changeWidget(int value) {
-    List<Widget> widgetList = [const BookmarkScreen(),const AllSokhanScreen(), const SearchScreen()];
+  void changeWidgetFromBottomBar(int value) {
+    List<Widget> widgetList = [
+      const BookmarkScreen(),
+      const AllSokhanScreen(),
+      const SearchScreen()
+    ];
     index = value;
     widget = widgetList[index];
     notifyListeners();
