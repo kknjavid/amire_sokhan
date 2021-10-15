@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
     ),
     body:
     Provider.of<WidgetProvider>(context).widget,
-    bottomNavigationBar: BottomBar(),
+    bottomNavigationBar: const BottomBar(),
     );
   }
 }

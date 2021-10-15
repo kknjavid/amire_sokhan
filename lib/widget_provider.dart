@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class WidgetProvider extends ChangeNotifier {
   int index = 0;
-  Widget widget = BookmarkScreen();
+  Widget widget = const BookmarkScreen();
 
   void changeWidget(int value) {
     List<Widget> widgetList = [const BookmarkScreen(),const AllSokhanScreen(), const SearchScreen()];

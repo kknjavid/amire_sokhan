@@ -25,12 +25,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_native_splash: ^1.2.4 # splash screen
+  flutter_lints: ^1.0.0
 
 flutter_native_splash: # splash screen setting
   android: true
   color: "#439688"
   image: "assets/appIcon.png"
-  flutter_lints: ^1.0.0
 
 flutter:
   uses-material-design: true
@@ -39,6 +39,7 @@ flutter:
   assets:
     - assets/amiresokhan.db
     - assets/appIcon.png
+    - assets/vector.png
 
   #
   fonts:
