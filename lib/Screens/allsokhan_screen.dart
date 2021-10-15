@@ -11,9 +11,9 @@ class AllSokhanScreen extends StatelessWidget {
       future: DbHelper.dbHelper.getAllSokhan(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
+          return Center(
             child: CircularProgressIndicator(
-              color: Colors.teal,
+              color: teal,
             ),
           );
         } else {
@@ -22,12 +22,11 @@ class AllSokhanScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 2),
-                color: Colors.teal[50],
+                color: teal[50],
                 child: TextButton(
                   child: ListTile(
                     title: Text(snapshot.data[index].arabic),
                     leading: Image.asset(vectorIcon,color: teal[900],),
-                    selectedTileColor: Colors.teal[100],
                   ),
                   onPressed: (){},
                 ),

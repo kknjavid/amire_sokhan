@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:amire_sokhan/globals.dart';
 import 'package:amire_sokhan/main_screen.dart';
 import 'package:amire_sokhan/widget_provider.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _AppState extends State<App> {
       ],
 
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: teal,
         fontFamily: "yekan",
       ),
       home: MainScreen(),
