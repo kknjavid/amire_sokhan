@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DbHelper {
-  static DbHelper dbHelper =  DbHelper._();
+  static DbHelper dbHelper = DbHelper._();
   DbHelper._();
   Database? _database;
   static String dbName = "amiresokhan.db";
@@ -52,17 +52,22 @@ class DbHelper {
     return allSokhanList;
   }
 
-Future<List<Sokhan>> getAllFavSokhan() async {
+  Future<List<Sokhan>> getAllFavSokhan() async {
     Database _dbClient = await db;
-    var allFavSokhan = await _dbClient.rawQuery("SELECT * FROM $table WHERE $colFav=?",[1]);
+    var allFavSokhan =
+        await _dbClient.rawQuery("SELECT * FROM $table WHERE $colFav=?", [1]);
     List<Sokhan> allFavSokhanList = allFavSokhan.isNotEmpty
         ? allFavSokhan.map((e) => Sokhan.fromMap(e)).toList()
         : [];
     return allFavSokhanList;
   }
-  
 
-  Future<int> updateFav(Sokhan sokhan) async {
+  Future<int> updateFavSokhan(Sokhan sokhan) async {
+    if (sokhan.favourit == 0) {
+      sokhan.favourit = 1;
+    } else {
+      sokhan.favourit = 0;
+    }
     Database _dbClient = await db;
     return await _dbClient
         .update(table, sokhan.toMap(), where: "id=?", whereArgs: [sokhan.id]);

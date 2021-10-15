@@ -1,15 +1,16 @@
-import 'package:amire_sokhan/database/db_helper.dart';
 import 'package:amire_sokhan/globals.dart';
+import 'package:amire_sokhan/widget_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BookmarkScreen extends StatelessWidget {
-  const BookmarkScreen({ Key? key }) : super(key: key);
+  const BookmarkScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-     return FutureBuilder(
-      future: DbHelper.dbHelper.getAllFavSokhan(),
+    return FutureBuilder(
+      future: Provider.of<WidgetProvider>(context).getAllFavSokhan,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -27,10 +28,23 @@ class BookmarkScreen extends StatelessWidget {
                 child: TextButton(
                   child: ListTile(
                     title: Text(snapshot.data[index].arabic),
-                    leading: Image.asset(vectorIcon,color: teal[900],),
-                    trailing: IconButton(onPressed: (){}, icon: Icon(Icons.bookmark,color: Colors.teal[500],)),
+                    leading: Image.asset(
+                      vectorIcon,
+                      color: teal[900],
+                    ),
+                    trailing: IconButton(
+                        onPressed: () {
+                          Provider.of<WidgetProvider>(context,listen: false )
+                        .updateBookmark(snapshot.data[index]);
+                        },
+                        icon: Icon(
+                          Icons.bookmark,
+                          color: Colors.teal[500],
+                        )),
                   ),
-                  onPressed: (){},
+                  onPressed: () {
+                    
+                  },
                 ),
               );
             },

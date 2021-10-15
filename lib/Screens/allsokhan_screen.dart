@@ -1,14 +1,17 @@
-import 'package:amire_sokhan/database/db_helper.dart';
+
 import 'package:amire_sokhan/globals.dart';
+import 'package:amire_sokhan/widget_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AllSokhanScreen extends StatelessWidget {
   const AllSokhanScreen({Key? key}) : super(key: key);
-
+  // ignore: prefer_typing_uninitialized_variables
+  
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: DbHelper.dbHelper.getAllSokhan(),
+      future:  Provider.of<WidgetProvider>(context).getAllSokhan,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -31,7 +34,10 @@ class AllSokhanScreen extends StatelessWidget {
                       color: teal[900],
                     ),
                     trailing: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                           Provider.of<WidgetProvider>(context,listen: false )
+                        .updateBookmark(snapshot.data[index]);
+                        },
                         icon: Icon(
                           snapshot.data[index].favourit == 1
                               ? Icons.bookmark
