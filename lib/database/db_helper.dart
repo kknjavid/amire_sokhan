@@ -71,5 +71,6 @@ class DbHelper {
     Database _dbClient = await db;
     return await _dbClient
         .update(table, sokhan.toMap(), where: "id=?", whereArgs: [sokhan.id]);
+    
   }
 }

@@ -33,6 +33,7 @@ class WidgetProvider extends ChangeNotifier {
   void updateBookmark(var sokhan) {
     updateFavSokhan(sokhan);
     getAllFavSokhan = DbHelper.dbHelper.getAllFavSokhan();
+    getAllSokhan = DbHelper.dbHelper.getAllSokhan();
     notifyListeners();
   }
 }

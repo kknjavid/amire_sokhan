@@ -11,10 +11,10 @@ class AllSokhanScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future:  Provider.of<WidgetProvider>(context).getAllSokhan,
+      future:  Provider.of<WidgetProvider>(context,listen: false).getAllSokhan,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: teal,
             ),
@@ -42,7 +42,7 @@ class AllSokhanScreen extends StatelessWidget {
                           snapshot.data[index].favourit == 1
                               ? Icons.bookmark
                               : Icons.bookmark_border_outlined,
-                          color: Colors.teal[500],
+                          color: teal[500],
                         )),
                   ),
                   onPressed: () {},

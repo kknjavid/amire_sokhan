@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 
 class BookmarkScreen extends StatelessWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
     return FutureBuilder(
-      future: Provider.of<WidgetProvider>(context).getAllFavSokhan,
+      future: Provider.of<WidgetProvider>(context,listen: false).getAllFavSokhan,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(
               color: teal,
             ),
@@ -39,7 +39,7 @@ class BookmarkScreen extends StatelessWidget {
                         },
                         icon: Icon(
                           Icons.bookmark,
-                          color: Colors.teal[500],
+                          color: teal[500],
                         )),
                   ),
                   onPressed: () {
