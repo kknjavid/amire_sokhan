@@ -1,6 +1,9 @@
 import 'package:amire_sokhan/Screens/allsokhan_screen.dart';
 import 'package:amire_sokhan/Screens/bookmark_screen.dart';
+import 'package:amire_sokhan/Screens/components/search_result_com.dart';
 import 'package:amire_sokhan/Screens/search_screen.dart';
+import 'package:amire_sokhan/database/db_helper.dart';
+import 'package:amire_sokhan/database/sokhan_model.dart';
 import 'package:amire_sokhan/state_widget/state_model.dart';
 import 'package:flutter/material.dart';
 
@@ -14,12 +17,47 @@ class MainStateful extends StatefulWidget {
 class _MainStatefulState extends State<MainStateful> {
   StateWidget state = StateWidget();
 
+  List<Sokhan> _res = [];
+  void fetchData() async {
+    await DbHelper.dbHelper.getAllFavSokhan().then((value) => _res = value);
+
+    StateWidget newState = state.copy(allData: _res);
+    setState(() {
+      state = newState;
+    });
+  }
+
+  @override
+  void initState() {
+    fetchData();
+    DbHelper.dbHelper.searchInAllSokhan("متن").then((value) => print(value));
+  }
+
   void navigatePageFromBottomBar(int value) {
-    List<Widget> _wList=[const BookmarkScreen(), const AllSokhanScreen(),const SearchScreen()];
+    List<Widget> _wList = [
+      const BookmarkScreen(),
+      const AllSokhanScreen(),
+      const SearchScreen()
+    ];
     final newState = state.copy(index: value, bodyWidget: _wList[value]);
     setState(() {
-      state=newState;
+      state = newState;
     });
+  }
+
+  void searchQuery(String text) {
+    if (text.isNotEmpty) {
+      StateWidget newState =
+          state.copy(searchResultCom: SearchResultCom(query: text));
+      setState(() {
+        state = newState;
+      });
+    } else {
+      StateWidget newState = state.copy(searchResultCom: Container());
+      setState(() {
+        state = newState;
+      });
+    }
   }
 
   @override
