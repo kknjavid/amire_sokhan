@@ -1,5 +1,5 @@
+import 'package:amire_sokhan/Screens/components/sokhan_tabbar_content/sokhan_content_head.dart';
 import 'package:amire_sokhan/database/db_helper.dart';
-import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
 class AllSokhanScreen extends StatelessWidget {
@@ -26,7 +26,13 @@ class AllSokhanScreen extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 1),
                 color: Colors.teal[50],
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SokhanContentHead(
+                                sokhan: snapshot.data![index])));
+                  },
                   child: ListTile(
                     leading: const Image(
                       image: AssetImage("assets/vector.png"),

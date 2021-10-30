@@ -1,6 +1,7 @@
 import 'package:amire_sokhan/database/db_helper.dart';
-import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
+
+import 'components/sokhan_tabbar_content/sokhan_content_head.dart';
 
 class BookmarkScreen extends StatelessWidget {
   const BookmarkScreen({Key? key}) : super(key: key);
@@ -25,14 +26,20 @@ class BookmarkScreen extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 1),
                 color: Colors.teal[50],
                 child: TextButton(
-                  onPressed: (){}
+                  onPressed: (){
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SokhanContentHead(
+                                sokhan: snapshot.data![index])));
+                  }
                   ,
                   child: ListTile(
                       leading: const Image(image: AssetImage("assets/vector.png"),color: Colors.teal,),
                       title: Text(snapshot.data![index].arabic.toString()),
                       trailing: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.bookmark_remove_sharp,color: Colors.teal,),
+                        icon: const Icon(Icons.bookmark_remove_sharp,color: Colors.teal,),
                         ),
                       ),
                 ),

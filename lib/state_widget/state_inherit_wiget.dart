@@ -15,7 +15,7 @@ class MainStateful extends StatefulWidget {
 }
 
 class _MainStatefulState extends State<MainStateful> {
-  StateWidget state = StateWidget();
+  StateWidget state = const StateWidget();
 
   List<Sokhan> _res = [];
   void fetchData() async {
@@ -27,11 +27,7 @@ class _MainStatefulState extends State<MainStateful> {
     });
   }
 
-  @override
-  void initState() {
-    fetchData();
-    DbHelper.dbHelper.searchInAllSokhan("متن").then((value) => print(value));
-  }
+
 
   void navigatePageFromBottomBar(int value) {
     List<Widget> _wList = [
@@ -67,10 +63,12 @@ class _MainStatefulState extends State<MainStateful> {
 }
 
 class StateInheritWidget extends InheritedWidget {
-  StateInheritWidget(this.state, this.mainStatefulState,
+  const StateInheritWidget(this.state, this.mainStatefulState,
       {Key? key, required this.child})
       : super(key: key, child: child);
 
+  @override
+  // ignore: overridden_fields
   final Widget child;
   final StateWidget state;
   final _MainStatefulState mainStatefulState;

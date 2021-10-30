@@ -1,5 +1,4 @@
 import 'package:amire_sokhan/Screens/bookmark_screen.dart';
-import 'package:amire_sokhan/Screens/components/search_result_com.dart';
 
 import 'package:flutter/material.dart';
 
