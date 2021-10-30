@@ -1,7 +1,6 @@
 import 'package:amire_sokhan/Screens/components/bottom_bar.dart';
 import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);

@@ -8,14 +8,36 @@ class AllSokhanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final alldata = StateInheritWidget.of(context)!.state.allData;
-    return ListView.builder(
-      itemCount: alldata!.length,
-      itemBuilder: (BuildContext context, int index) {
-        if (alldata.isEmpty) {
-          return CircularProgressIndicator();
+    return FutureBuilder(
+      future: DbHelper.dbHelper.getAllSokhan(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.data!.isEmpty) {
+          return const Center(
+            child: Text("موردی یافت نشد"),
+          );
         } else {
-          return TextButton(child: ListTile(title: Text(alldata[index].arabic.toString()),),onPressed: (){},);
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                margin: const EdgeInsets.symmetric(vertical: 1),
+                color: Colors.teal[50],
+                child: TextButton(
+                  onPressed: () {},
+                  child: ListTile(
+                    leading: const Image(
+                      image: AssetImage("assets/vector.png"),
+                      color: Colors.teal,
+                    ),
+                    title: Text(snapshot.data![index].arabic.toString()),
+                  ),
+                ),
+              );
+            },
+          );
         }
       },
     );

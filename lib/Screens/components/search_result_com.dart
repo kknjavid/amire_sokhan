@@ -9,20 +9,31 @@ class SearchResultCom extends StatelessWidget {
     return FutureBuilder(
       future: DbHelper.dbHelper.searchInAllSokhan(query),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return ListView.builder(
-          itemCount: snapshot.data!.length,
-          itemBuilder: (BuildContext context, int index) {
-            if (!snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.data!.isEmpty) {
-              return const Center(child: Text("موردی یافت نشد"),);
-            } else {
-              return ListTile(
-                  title: Text(snapshot.data![index].arabic.toString()));
-            }
-          },
-        );
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.data!.isEmpty) {
+          return const Center(
+            child: Text("موردی یافت نشد"),
+          );
+        } else {
+           return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                margin: const EdgeInsets.symmetric(vertical: 1),
+                color: Colors.teal[50],
+                child: TextButton(
+                  onPressed: (){}
+                  ,
+                  child: ListTile(
+                    leading: const Icon(Icons.search,color: Colors.teal,),
+                      title: Text(snapshot.data![index].arabic.toString())),
+                ),
+              );
+            },
+          );
+        }
       },
     );
   }
