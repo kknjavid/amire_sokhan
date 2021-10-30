@@ -1,4 +1,5 @@
 import 'package:amire_sokhan/database/db_helper.dart';
+import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
 import 'components/sokhan_tabbar_content/sokhan_content_head.dart';
@@ -8,6 +9,7 @@ class BookmarkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = StateInheritWidget.of(context)!;
     return FutureBuilder(
       future: DbHelper.dbHelper.getAllFavSokhan(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -19,29 +21,37 @@ class BookmarkScreen extends StatelessWidget {
             child: Text("هیچ نشان شده ای وجود ندارد"),
           );
         } else {
-           return ListView.builder(
+          return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 1),
                 color: Colors.teal[50],
                 child: TextButton(
-                  onPressed: (){
-                     Navigator.push(
+                  onPressed: () {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => SokhanContentHead(
                                 sokhan: snapshot.data![index])));
-                  }
-                  ,
+                  },
                   child: ListTile(
-                      leading: const Image(image: AssetImage("assets/vector.png"),color: Colors.teal,),
-                      title: Text(snapshot.data![index].arabic.toString()),
-                      trailing: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.bookmark_remove_sharp,color: Colors.teal,),
-                        ),
+                    leading: const Image(
+                      image: AssetImage("assets/vector.png"),
+                      color: Colors.teal,
+                    ),
+                    title: Text(snapshot.data![index].arabic.toString()),
+                    trailing: IconButton(
+                      onPressed: () {
+                        provider.updateFavSokhan(
+                            sokhan: snapshot.data![index], curWidget: this, queryMethod: DbHelper.dbHelper.getAllFavSokhan());
+                      },
+                      icon: const Icon(
+                        Icons.bookmark_remove_sharp,
+                        color: Colors.teal,
                       ),
+                    ),
+                  ),
                 ),
               );
             },

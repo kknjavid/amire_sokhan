@@ -17,18 +17,6 @@ class MainStateful extends StatefulWidget {
 class _MainStatefulState extends State<MainStateful> {
   StateWidget state = const StateWidget();
 
-  List<Sokhan> _res = [];
-  void fetchData() async {
-    await DbHelper.dbHelper.getAllFavSokhan().then((value) => _res = value);
-
-    StateWidget newState = state.copy(allData: _res);
-    setState(() {
-      state = newState;
-    });
-  }
-
-
-
   void navigatePageFromBottomBar(int value) {
     List<Widget> _wList = [
       const BookmarkScreen(),
@@ -54,6 +42,14 @@ class _MainStatefulState extends State<MainStateful> {
         state = newState;
       });
     }
+  }
+
+  void updateFavSokhan({required Sokhan sokhan,required Widget curWidget, Future? queryMethod}) {
+    DbHelper.dbHelper.updateFavSokhan(sokhan);
+    final newState = state.copy( curWidget: curWidget, queryMethod: queryMethod);
+    setState(() {
+      state = newState;
+    });
   }
 
   @override

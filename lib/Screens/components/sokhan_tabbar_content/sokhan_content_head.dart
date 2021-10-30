@@ -1,4 +1,5 @@
 import 'package:amire_sokhan/Screens/components/sokhan_tabbar_content/sokhan_content_body.dart';
+import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
 class SokhanContentHead extends StatelessWidget {
@@ -6,11 +7,18 @@ class SokhanContentHead extends StatelessWidget {
   final sokhan;
   @override
   Widget build(BuildContext context) {
-   return DefaultTabController(
+    final provider = StateInheritWidget.of(context)!;
+    return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: IconButton(onPressed: (){},icon: const Icon(Icons.bookmark_add)),
+          title: IconButton(
+              onPressed: () {
+                provider.updateFavSokhan(sokhan:sokhan, curWidget: this);
+              },
+              icon: Icon(sokhan.favourit == 0
+                  ? Icons.bookmark_add
+                  : Icons.bookmark_remove)),
           bottom: const TabBar(
             tabs: [
               Tab(
@@ -26,9 +34,9 @@ class SokhanContentHead extends StatelessWidget {
           ),
         ),
         body: TabBarView(children: [
-          SokhanContentBody(content: sokhan.arabic, title:"متن"),
-          SokhanContentBody(content: sokhan.farsi, title:"ترجمه"),
-          SokhanContentBody(content: sokhan.refrence, title:"منبع"),
+          SokhanContentBody(content: sokhan.arabic, title: "متن"),
+          SokhanContentBody(content: sokhan.farsi, title: "ترجمه"),
+          SokhanContentBody(content: sokhan.refrence, title: "منبع"),
         ]),
       ),
     );
