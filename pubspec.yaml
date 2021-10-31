@@ -43,6 +43,7 @@ flutter:
     - assets/appIcon.png
     - assets/vector.png
     - assets/background.jpg
+    - assets/kk.gif
 
   #
   fonts:

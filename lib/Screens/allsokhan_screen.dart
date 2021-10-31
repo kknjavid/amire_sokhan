@@ -38,7 +38,11 @@ class AllSokhanScreen extends StatelessWidget {
                       image: AssetImage("assets/vector.png"),
                       color: Colors.teal,
                     ),
-                    title: Text(snapshot.data![index].arabic.toString()),
+                    title: Text(
+                      snapshot.data![index].arabic.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ),
                 ),
               );

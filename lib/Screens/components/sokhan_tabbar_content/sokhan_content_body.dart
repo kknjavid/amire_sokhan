@@ -9,8 +9,9 @@ class SokhanContentBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      child: content!=null?SelectableText(content):null,
+      color: Colors.teal[50],
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+      child: content!=null?SelectableText(content,style: const TextStyle(height: 2,),textAlign: TextAlign.justify,):null,
     );
   }
 }

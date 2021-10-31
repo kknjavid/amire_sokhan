@@ -1,5 +1,5 @@
 import 'package:amire_sokhan/database/db_helper.dart';
-import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
+import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
 import 'components/sokhan_tabbar_content/sokhan_content_head.dart';
@@ -40,11 +40,14 @@ class BookmarkScreen extends StatelessWidget {
                       image: AssetImage("assets/vector.png"),
                       color: Colors.teal,
                     ),
-                    title: Text(snapshot.data![index].arabic.toString()),
+                    title: Text(snapshot.data![index].arabic.toString(),overflow: TextOverflow.ellipsis,
+                      maxLines: 1,),
                     trailing: IconButton(
                       onPressed: () {
                         provider.updateFavSokhan(
-                            sokhan: snapshot.data![index], curWidget: this, queryMethod: DbHelper.dbHelper.getAllFavSokhan());
+                            sokhan: snapshot.data![index],
+                            curWidget: this,
+                            queryMethod: DbHelper.dbHelper.getAllFavSokhan());
                       },
                       icon: const Icon(
                         Icons.bookmark_remove_sharp,

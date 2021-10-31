@@ -4,7 +4,7 @@ import 'package:amire_sokhan/Screens/components/search_result_com.dart';
 import 'package:amire_sokhan/Screens/search_screen.dart';
 import 'package:amire_sokhan/database/db_helper.dart';
 import 'package:amire_sokhan/database/sokhan_model.dart';
-import 'package:amire_sokhan/state_widget/state_model.dart';
+import 'package:amire_sokhan/provider/state_model.dart';
 import 'package:flutter/material.dart';
 
 class MainStateful extends StatefulWidget {

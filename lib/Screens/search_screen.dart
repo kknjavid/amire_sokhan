@@ -1,4 +1,4 @@
-import 'package:amire_sokhan/state_widget/state_inherit_wiget.dart';
+import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {

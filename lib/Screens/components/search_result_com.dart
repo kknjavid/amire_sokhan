@@ -36,7 +36,8 @@ class SearchResultCom extends StatelessWidget {
                   ,
                   child: ListTile(
                     leading: const Icon(Icons.search,color: Colors.teal,),
-                      title: Text(snapshot.data![index].arabic.toString())),
+                      title: Text(snapshot.data![index].arabic.toString(),overflow: TextOverflow.ellipsis,
+                      maxLines: 1,)),
                 ),
               );
             },
