@@ -33,7 +33,7 @@ class App extends StatelessWidget {
           ],
 
           theme: ThemeData(
-            primarySwatch: teal,
+            primarySwatch: StateInheritWidget.of(context)!.state.primaryColor,
             fontFamily: "yekan",
           ),
           home: MainScreen(),

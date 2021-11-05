@@ -6,12 +6,14 @@ class StateWidget {
   final int index;
   final Widget bodyWidget;
   final Widget? searchResultCom;
+  final dynamic primaryColor ;
   // ..........updataFavSokhan
   final Widget? curWidget;
   final Future? queryMethod;
   //........
   const StateWidget(
       {this.queryMethod,
+      this.primaryColor= Colors.teal,
       this.curWidget,
       this.searchResultCom,
       this.index = 0,
@@ -24,6 +26,7 @@ class StateWidget {
     Widget? searchResultCom,
     Future? queryMethod,
     Widget? curWidget,
+    dynamic? primaryColor,
   }) =>
       StateWidget(
         index: index ?? this.index,
@@ -31,6 +34,7 @@ class StateWidget {
         searchResultCom: searchResultCom ?? Container(),
         queryMethod: queryMethod,
         curWidget: curWidget,
+        primaryColor: primaryColor?? this.primaryColor,
       );
 
   @override
@@ -42,7 +46,8 @@ class StateWidget {
           bodyWidget == other.bodyWidget &&
           searchResultCom == other.searchResultCom &&
           queryMethod == other.queryMethod &&
-          curWidget == other.curWidget;
+          curWidget == other.curWidget&&
+          primaryColor==other.primaryColor;
 
   @override
   int get hashCode =>
@@ -50,5 +55,6 @@ class StateWidget {
       bodyWidget.hashCode ^
       searchResultCom.hashCode ^
       queryMethod.hashCode ^
-      curWidget.hashCode;
+      curWidget.hashCode^
+      primaryColor.hashCode;
 }

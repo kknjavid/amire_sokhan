@@ -1,5 +1,6 @@
 import 'package:amire_sokhan/Screens/components/sokhan_tabbar_content/sokhan_content_head.dart';
 import 'package:amire_sokhan/database/db_helper.dart';
+import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
 class AllSokhanScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class AllSokhanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = StateInheritWidget.of(context)!;
     return FutureBuilder(
       future: DbHelper.dbHelper.getAllSokhan(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -16,7 +18,7 @@ class AllSokhanScreen extends StatelessWidget {
         }
         if (snapshot.data!.isEmpty) {
           return const Center(
-            child: Text("موردی یافت نشد"),
+            child: Text("هیچ نشان شده ای وجود ندارد"),
           );
         } else {
           return ListView.builder(
@@ -24,7 +26,7 @@ class AllSokhanScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 1),
-                color: Colors.teal[50],
+                color: provider.state.primaryColor[50],
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -34,15 +36,16 @@ class AllSokhanScreen extends StatelessWidget {
                                 sokhan: snapshot.data![index])));
                   },
                   child: ListTile(
-                    leading: const Image(
-                      image: AssetImage("assets/vector.png"),
-                      color: Colors.teal,
+                    leading:  Image(
+                      image: const AssetImage("assets/vector.png"),
+                      color: provider.state.primaryColor,
                     ),
                     title: Text(
                       snapshot.data![index].arabic.toString(),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
+                    
                   ),
                 ),
               );

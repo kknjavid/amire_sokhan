@@ -17,13 +17,14 @@ class MainStateful extends StatefulWidget {
 class _MainStatefulState extends State<MainStateful> {
   StateWidget state = const StateWidget();
 
-  void navigatePageFromBottomBar(int value) {
+  void navigatePageFromBottomBar(int value, Future? queryMethod) {
     List<Widget> _wList = [
       const BookmarkScreen(),
       const AllSokhanScreen(),
       const SearchScreen()
     ];
-    final newState = state.copy(index: value, bodyWidget: _wList[value]);
+    final newState = state.copy(
+        index: value, bodyWidget: _wList[value], queryMethod: queryMethod);
     setState(() {
       state = newState;
     });
@@ -44,9 +45,26 @@ class _MainStatefulState extends State<MainStateful> {
     }
   }
 
-  void updateFavSokhan({required Sokhan sokhan,required Widget curWidget, Future? queryMethod}) {
+  void changeTheme(color) {
+    final newState = state.copy(primaryColor: color);
+    setState(() {
+      state = newState;
+    });
+  }
+
+  void updateFavSokhan(
+      {required Sokhan sokhan,
+      required Widget curWidget,
+      Future? queryMethod}) {
     DbHelper.dbHelper.updateFavSokhan(sokhan);
-    final newState = state.copy( curWidget: curWidget, queryMethod: queryMethod);
+    final newState = state.copy(curWidget: curWidget, queryMethod: queryMethod);
+    setState(() {
+      state = newState;
+    });
+  }
+
+  void changeColor(dynamic? color) {
+    final newState = state.copy(primaryColor: color);
     setState(() {
       state = newState;
     });

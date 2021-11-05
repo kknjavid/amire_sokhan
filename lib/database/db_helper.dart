@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'sokhan_model.dart';
 import 'package:flutter/services.dart';
-import 'package:sqflite/sqflite.dart';
+// import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DbHelper {
@@ -11,11 +12,14 @@ class DbHelper {
   Database? _database;
   static const String _dbName = "amiresokhan.db";
   static const String _table = "sokhan";
-  static const String _colID = "id";
+  // static const String _colID = "id";
   static const String _colArabic = "arabic";
   static const String _colFarsi = "farsi";
   // static String _colRef = "refrence";
   static const String _colFav = "favourit";
+
+
+
 
   Future<Database> get _db async => _database ??= await _initDb();
 
@@ -26,7 +30,7 @@ class DbHelper {
     if (dbExist) {
       // ignore: avoid_print
       print('db already exist');
-      return await openDatabase(path);
+      return await openDatabase(path,password: "cyrus");
     } else {
       try {
         // ignore: avoid_print
@@ -39,13 +43,13 @@ class DbHelper {
       await File(path).writeAsBytes(bytes, flush: true);
       // ignore: avoid_print
       print("db copied ...");
-      return await openDatabase(path);
+      return await openDatabase(path, password:"cyrus");
     }
   }
 
   Future<List<Sokhan>> getAllSokhan() async {
     Database _dbClient = await _db;
-    var allSokhan = await _dbClient.query(_table, orderBy: _colID);
+    var allSokhan = await _dbClient.query(_table);
     List<Sokhan> allSokhanList = allSokhan.isNotEmpty
         ? allSokhan.map((e) => Sokhan.fromMap(e)).toList()
         : [];

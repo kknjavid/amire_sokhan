@@ -1,3 +1,4 @@
+import 'package:amire_sokhan/database/db_helper.dart';
 import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +11,7 @@ class BottomBar extends StatelessWidget {
     final provider = StateInheritWidget.of(context)!;
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.teal,
+      backgroundColor: provider.state.primaryColor,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.white.withOpacity(.60),
       selectedFontSize: 14,
@@ -20,7 +21,11 @@ class BottomBar extends StatelessWidget {
         if (value >= 3) {
           SystemNavigator.pop();
         } else {
-          provider.navigatePageFromBottomBar(value);
+          provider.navigatePageFromBottomBar(
+              value,
+              value == 0
+                  ? DbHelper.dbHelper.getAllFavSokhan()
+                  : DbHelper.dbHelper.getAllSokhan());
         }
       },
       items: [

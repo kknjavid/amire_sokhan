@@ -10,8 +10,9 @@ class BookmarkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = StateInheritWidget.of(context)!;
+    var query = provider.state.queryMethod ?? DbHelper.dbHelper.getAllFavSokhan();
     return FutureBuilder(
-      future: DbHelper.dbHelper.getAllFavSokhan(),
+      future: query,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
@@ -26,7 +27,7 @@ class BookmarkScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 1),
-                color: Colors.teal[50],
+                color:provider.state.primaryColor[50],
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -36,12 +37,15 @@ class BookmarkScreen extends StatelessWidget {
                                 sokhan: snapshot.data![index])));
                   },
                   child: ListTile(
-                    leading: const Image(
-                      image: AssetImage("assets/vector.png"),
-                      color: Colors.teal,
+                    leading: Image(
+                      image: const AssetImage("assets/vector.png"),
+                      color: provider.state.primaryColor,
                     ),
-                    title: Text(snapshot.data![index].arabic.toString(),overflow: TextOverflow.ellipsis,
-                      maxLines: 1,),
+                    title: Text(
+                      snapshot.data![index].arabic.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                     trailing: IconButton(
                       onPressed: () {
                         provider.updateFavSokhan(
@@ -49,9 +53,9 @@ class BookmarkScreen extends StatelessWidget {
                             curWidget: this,
                             queryMethod: DbHelper.dbHelper.getAllFavSokhan());
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.bookmark_remove_sharp,
-                        color: Colors.teal,
+                        color: provider.state.primaryColor,
                       ),
                     ),
                   ),
