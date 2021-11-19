@@ -63,7 +63,7 @@ class _MainStatefulState extends State<MainStateful> {
     });
   }
 
-  void changeColor(dynamic? color) {
+  void changeColor({color}) {
     final newState = state.copy(primaryColor: color);
     setState(() {
       state = newState;

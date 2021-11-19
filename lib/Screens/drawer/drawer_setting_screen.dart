@@ -40,7 +40,7 @@ drawerSettingScreen(context) {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text("خروج")),
+          child: const Text("خروج")),
     ],
   );
 }

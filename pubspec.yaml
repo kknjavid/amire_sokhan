@@ -11,17 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
- 
-  cupertino_icons: ^1.0.2
 
-  #sqlite
-  sqflite: ^2.0.0+4
+  cupertino_icons: ^1.0.2
 
   #localization
   flutter_localizations:
     sdk: flutter
-  bloc: ^7.2.1
-  flutter_bloc: ^7.3.1
+  bloc: ^8.0.1
   encrypt: ^5.0.1
   sqflite_sqlcipher: ^2.1.0
 
@@ -46,6 +42,7 @@ flutter:
     - assets/vector.png
     - assets/background.jpg
     - assets/kk.gif
+    - assets/information.json
 
   #
   fonts:

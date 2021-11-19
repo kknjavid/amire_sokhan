@@ -26,7 +26,7 @@ class StateWidget {
     Widget? searchResultCom,
     Future? queryMethod,
     Widget? curWidget,
-    dynamic? primaryColor,
+     primaryColor,
   }) =>
       StateWidget(
         index: index ?? this.index,

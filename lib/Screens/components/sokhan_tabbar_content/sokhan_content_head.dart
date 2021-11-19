@@ -10,7 +10,6 @@ class SokhanContentHead extends StatelessWidget {
     this.sokhan, this.query,
   }) : super(key: key);
   final sokhan;
-  // ignore: prefer_typing_uninitialized_variables
   final query;
   @override
   Widget build(BuildContext context) {

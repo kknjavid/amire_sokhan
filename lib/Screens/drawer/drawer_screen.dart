@@ -1,3 +1,4 @@
+import 'package:amire_sokhan/Screens/drawer/drawer_appinfo_screen.dart';
 import 'package:amire_sokhan/Screens/drawer/drawer_setting_screen.dart';
 import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
@@ -20,11 +21,9 @@ class DrawerScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Container(
-                                child: const Image(
-                                  image: AssetImage("assets/kk.gif"),
-                                ),
-                              )));
+                          builder: (context) => const Image(
+                            image: AssetImage("assets/kk.gif"),
+                          )));
                 },
                 child: const CircleAvatar(
                   backgroundImage: AssetImage("assets/kk.gif"),
@@ -41,12 +40,13 @@ class DrawerScreen extends StatelessWidget {
                 text: "درباره نرم افزار",
                 icon: Icons.book,
                 context: context,
-                child: drawerSettingScreen(context)),
+                child: drawerInfoScreen(context, "appinfo"),
+                ),
             DrawerView(
                 text: "درباره ما",
                 icon: Icons.developer_mode,
                 context: context,
-                child: drawerSettingScreen(context)),
+                child: drawerInfoScreen(context,"devinfo"),),
           ],
         ),
       ),

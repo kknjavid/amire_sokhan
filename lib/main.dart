@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:amire_sokhan/globals.dart';
 import 'package:amire_sokhan/main_screen.dart';
 import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
