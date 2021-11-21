@@ -63,12 +63,6 @@ class _MainStatefulState extends State<MainStateful> {
     });
   }
 
-  void changeColor({color}) {
-    final newState = state.copy(primaryColor: color);
-    setState(() {
-      state = newState;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -51,7 +51,7 @@ GestureDetector themeItem({required color, required provider}) {
       backgroundColor: color,
     ),
     onTap: () {
-      provider.changeColor(color);
+      provider.changeTheme(color);
     },
   );
 }
