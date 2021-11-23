@@ -3,6 +3,7 @@ import 'package:amire_sokhan/Screens/bookmark_screen.dart';
 import 'package:amire_sokhan/Screens/components/search_result_com.dart';
 import 'package:amire_sokhan/Screens/search_screen.dart';
 import 'package:amire_sokhan/database/db_helper.dart';
+import 'package:amire_sokhan/database/settings_data.dart';
 import 'package:amire_sokhan/database/sokhan_model.dart';
 import 'package:amire_sokhan/provider/state_model.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,13 @@ class MainStateful extends StatefulWidget {
 
 class _MainStatefulState extends State<MainStateful> {
   StateWidget state = const StateWidget();
+
+  @override
+  void initState() {
+    super.initState();
+    // state.copy(fontSize: SettingsData.fontSize);
+    // print(SettingsData.fontSize);
+  }
 
   void navigatePageFromBottomBar(int value, Future? queryMethod) {
     List<Widget> _wList = [
@@ -52,6 +60,13 @@ class _MainStatefulState extends State<MainStateful> {
     });
   }
 
+  void changeFontSize(double value) {
+    final newState = state.copy(fontSize: value);
+    setState(() {
+      state = newState;
+    });
+  }
+
   void updateFavSokhan(
       {required Sokhan sokhan,
       required Widget curWidget,
@@ -62,7 +77,6 @@ class _MainStatefulState extends State<MainStateful> {
       state = newState;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {

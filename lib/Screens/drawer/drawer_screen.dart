@@ -33,7 +33,7 @@ class DrawerScreen extends StatelessWidget {
             DrawerView(
               text: "تنظیمات",
               icon: Icons.settings,
-              child: drawerSettingScreen(context),
+              child: const drawerSettingScreen(),
               context: context,
             ),
             DrawerView(
