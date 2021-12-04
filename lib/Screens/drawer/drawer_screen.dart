@@ -31,9 +31,9 @@ class DrawerScreen extends StatelessWidget {
               ),
             ),
             DrawerView(
-              text: "تنظیمات",
+              text: "پوسته نرم افزار",
               icon: Icons.settings,
-              child: const drawerSettingScreen(),
+              child: const DrawerSettingScreen(),
               context: context,
             ),
             DrawerView(

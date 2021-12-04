@@ -20,7 +20,8 @@ class SokhanContentBody extends StatelessWidget {
           ? SelectableText.rich(
               query==null?TextSpan(text:content):
               TextSpan(children: highlightOccurrences(content, query)),
-              style: const TextStyle(
+              style: TextStyle(
+                fontSize: provider.state.fontSize,
                 height: 2,
               ),
               textAlign: TextAlign.justify,

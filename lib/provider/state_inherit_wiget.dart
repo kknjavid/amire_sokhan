@@ -21,8 +21,13 @@ class _MainStatefulState extends State<MainStateful> {
   @override
   void initState() {
     super.initState();
-    // state.copy(fontSize: SettingsData.fontSize);
-    // print(SettingsData.fontSize);
+    SettingsData.getColor().then((color) {
+      final newState = state.copy(primaryColor: color);
+      setState(() {
+        state = newState;
+      });
+      print("color is $color");
+    });
   }
 
   void navigatePageFromBottomBar(int value, Future? queryMethod) {
@@ -53,7 +58,9 @@ class _MainStatefulState extends State<MainStateful> {
     }
   }
 
-  void changeTheme(color) {
+  void changeTheme(color, colorIndex) {
+    SettingsData.setColor(colorIndex)
+        .then((success) => print("operation is success: $success"));
     final newState = state.copy(primaryColor: color);
     setState(() {
       state = newState;

@@ -1,8 +1,8 @@
 import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
-class drawerSettingScreen extends StatelessWidget {
-  const drawerSettingScreen({Key? key}) : super(key: key);
+class DrawerSettingScreen extends StatelessWidget {
+  const DrawerSettingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,33 +13,20 @@ class drawerSettingScreen extends StatelessWidget {
         horizontal: 20,
         vertical: 40,
       ),
-      title: const Text("تنظیمات"),
+      title: const Text("پوسته نرم افزار"),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text("سایز فونت"),
-          const SizedBox(height: 40),
-          Slider(
-            label: provider.state.fontSize.toString(),
-            value: provider.state.fontSize,
-            max: 30,
-            min: 10,
-            divisions: 10,
-            onChanged: (value) {
-              provider.changeFontSize(value);
-            },
-          ),
-          const SizedBox(height: 40),
-          const Text("پوسته نرم افزار"),
           const SizedBox(height: 40),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             children: [
-              themeItem(provider: provider, color: Colors.teal),
-              themeItem(provider: provider, color: Colors.indigo),
+              themeItem(provider: provider, color: Colors.teal,colorIndex: 0),
+              themeItem(provider: provider, color: Colors.indigo,colorIndex: 1),
+              themeItem(provider: provider, color: Colors.purple,colorIndex: 2),
             ],
           ),
         ],
@@ -55,13 +42,16 @@ class drawerSettingScreen extends StatelessWidget {
   }
 }
 
-GestureDetector themeItem({required color, required provider}) {
-  return GestureDetector(
-    child: CircleAvatar(
+Widget themeItem({required color, required provider, required colorIndex}) {
+  return IconButton(
+    iconSize: 40,
+    splashColor: color,
+    icon: CircleAvatar(
+      
       backgroundColor: color,
     ),
-    onTap: () {
-      provider.changeTheme(color);
+    onPressed: () {
+      provider.changeTheme(color, colorIndex);
     },
   );
 }
