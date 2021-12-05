@@ -14,12 +14,19 @@ class SokhanContentBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = StateInheritWidget.of(context)!;
     return Container(
-      color:provider.state.primaryColor[50],
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/cbg.jpg"),
+          repeat: ImageRepeat.repeat,
+          colorFilter: ColorFilter.mode(Colors.teal, BlendMode.screen),
+        ),
+      ),
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
       child: content != null
           ? SelectableText.rich(
-              query==null?TextSpan(text:content):
-              TextSpan(children: highlightOccurrences(content, query)),
+              query == null
+                  ? TextSpan(text: content)
+                  : TextSpan(children: highlightOccurrences(content, query)),
               style: TextStyle(
                 fontSize: provider.state.fontSize,
                 height: 2,
@@ -60,7 +67,10 @@ List<TextSpan> highlightOccurrences(String source, String query) {
 
     children.add(TextSpan(
       text: source.substring(match.start, match.end),
-      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.red,),
+      style: const TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.red,
+      ),
     ));
 
     if (i == matches.length - 1 && match.end != source.length) {

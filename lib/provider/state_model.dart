@@ -18,7 +18,7 @@ class StateWidget {
       this.curWidget,
       this.searchResultCom,
       this.index = 0,
-      this.fontSize=20,
+      this.fontSize=16,
       this.bodyWidget = const BookmarkScreen()});
 
   StateWidget copy({

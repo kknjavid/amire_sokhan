@@ -44,6 +44,7 @@ flutter:
     - assets/background.jpg
     - assets/kk.gif
     - assets/information.json
+    - assets/cbg.jpg
 
   #
   fonts:
