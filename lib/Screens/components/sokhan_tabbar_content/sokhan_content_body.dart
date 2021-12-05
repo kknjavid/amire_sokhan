@@ -13,27 +13,32 @@ class SokhanContentBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = StateInheritWidget.of(context)!;
+    final MaterialColor color = provider.state.primaryColor;
     return Container(
       decoration: const BoxDecoration(
+        
         image: DecorationImage(
           image: AssetImage("assets/cbg.jpg"),
           repeat: ImageRepeat.repeat,
-          colorFilter: ColorFilter.mode(Colors.indigo, BlendMode.screen),
+          colorFilter: ColorFilter.linearToSrgbGamma(),
         ),
       ),
+      child: Container(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      child: content != null
-          ? SelectableText.rich(
-              query == null
-                  ? TextSpan(text: content)
-                  : TextSpan(children: highlightOccurrences(content, query)),
-              style: TextStyle(
-                fontSize: provider.state.fontSize,
-                height: 2,
-              ),
-              textAlign: TextAlign.justify,
-            )
-          : null,
+        color: color.withOpacity(.25),
+        child: content != null
+            ? SelectableText.rich(
+                query == null
+                    ? TextSpan(text: content)
+                    : TextSpan(children: highlightOccurrences(content, query)),
+                style: TextStyle(
+                  fontSize: provider.state.fontSize,
+                  height: 2,
+                ),
+                textAlign: TextAlign.justify,
+              )
+            : null,
+      ),
     );
   }
 }
