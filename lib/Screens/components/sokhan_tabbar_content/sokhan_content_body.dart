@@ -18,7 +18,7 @@ class SokhanContentBody extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage("assets/cbg.jpg"),
           repeat: ImageRepeat.repeat,
-          colorFilter: ColorFilter.mode(Colors.teal, BlendMode.screen),
+          colorFilter: ColorFilter.mode(Colors.indigo, BlendMode.screen),
         ),
       ),
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
