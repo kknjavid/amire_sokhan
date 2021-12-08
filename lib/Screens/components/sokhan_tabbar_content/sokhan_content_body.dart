@@ -25,7 +25,7 @@ class SokhanContentBody extends StatelessWidget {
       ),
       child: Container(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-        color: color.withOpacity(.25),
+        color: color.withOpacity(.20),
         child: content != null
             ? SelectableText.rich(
                 query == null

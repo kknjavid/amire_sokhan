@@ -80,6 +80,9 @@ class DbHelper {
   }
 
   Future<List<Sokhan>> searchInAllSokhan(String query) async {
+
+
+    
     Database _dbClient = await _db;
     var res = await _dbClient.query(_table,
         where: "$_colArabic LIKE ? OR $_colFarsi LIKE ?",
