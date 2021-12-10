@@ -1,5 +1,6 @@
 import 'package:amire_sokhan/Screens/drawer/drawer_appinfo_screen.dart';
 import 'package:amire_sokhan/Screens/drawer/drawer_setting_screen.dart';
+import 'package:amire_sokhan/Screens/drawer/whatsapp_launcher.dart';
 import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
 
@@ -47,6 +48,7 @@ class DrawerScreen extends StatelessWidget {
                 icon: Icons.developer_mode,
                 context: context,
                 child: drawerInfoScreen(context,"devinfo"),),
+            TextButton(onPressed: ()async=> await launchWhatsApp(), child:ListTile(title: Text("تماس با ما"),leading: Image(image: AssetImage("assets/whatsapp.png"),height: 25,color: StateInheritWidget.of(context)!.state.primaryColor,),) ),
           ],
         ),
       ),
