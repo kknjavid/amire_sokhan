@@ -38,8 +38,8 @@ class SokhanContentHead extends StatelessWidget {
                 provider.updateFavSokhan(sokhan: sokhan, curWidget: this);
               },
               icon: Icon(sokhan.favourit == 0
-                  ? Icons.bookmark
-                  : Icons.bookmark_border_outlined)),
+                  ? Icons.bookmark_border_outlined
+                  : Icons.bookmark)),
           bottom: const TabBar(
             tabs: [
               Tab(

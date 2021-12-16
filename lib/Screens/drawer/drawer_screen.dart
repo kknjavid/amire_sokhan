@@ -14,23 +14,24 @@ class DrawerScreen extends StatelessWidget {
         child: ListView(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            UserAccountsDrawerHeader(
-              accountName: const Text("کورش کاظمی نیا"),
-              accountEmail: const Text("kkn.javid@gmail.com"),
-              currentAccountPicture: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Image(
-                            image: AssetImage("assets/kk.gif"),
-                          )));
-                },
-                child: const CircleAvatar(
-                  backgroundImage: AssetImage("assets/kk.gif"),
-                ),
-              ),
+            const UserAccountsDrawerHeader(
+              accountName: Text("امیر سخن"),
+              accountEmail: Text("گزیده ای از بیانات نهج البلاغه"),
+              // currentAccountPicture: GestureDetector(
+              //   onTap: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const Image(
+              //               image: AssetImage("assets/kk.gif"),
+              //             )));
+              //   },
+              //   child: const CircleAvatar(
+              //     backgroundImage: AssetImage("assets/kk.gif"),
+              //   ),
+              // ),
             ),
+            
             DrawerView(
               text: "پوسته نرم افزار",
               icon: Icons.settings,
