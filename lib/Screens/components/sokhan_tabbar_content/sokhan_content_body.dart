@@ -16,7 +16,6 @@ class SokhanContentBody extends StatelessWidget {
     final MaterialColor color = provider.state.primaryColor;
     return Container(
       decoration: const BoxDecoration(
-        
         image: DecorationImage(
           image: AssetImage("assets/cbg.jpg"),
           repeat: ImageRepeat.repeat,
@@ -24,13 +23,14 @@ class SokhanContentBody extends StatelessWidget {
         ),
       ),
       child: Container(
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         color: color.withOpacity(.20),
         child: content != null
             ? SelectableText.rich(
                 query == null
                     ? TextSpan(text: content)
-                    : TextSpan(children: highlightOccurrences(content, query)),
+                    : TextSpan(
+                        children: highlightOccurrences(content, query)),
                 style: TextStyle(
                   fontSize: provider.state.fontSize,
                   height: 2,

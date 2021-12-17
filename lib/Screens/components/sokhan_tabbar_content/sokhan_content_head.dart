@@ -3,6 +3,7 @@
 import 'package:amire_sokhan/Screens/components/sokhan_tabbar_content/sokhan_content_body.dart';
 import 'package:amire_sokhan/provider/state_inherit_wiget.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SokhanContentHead extends StatelessWidget {
   const SokhanContentHead({
@@ -20,17 +21,33 @@ class SokhanContentHead extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            Slider(
-              value: provider.state.fontSize,
-              onChanged: (value) {
-                provider.changeFontSize(value);
+            IconButton(
+                onPressed: () {
+                  Share.share(
+                      "${sokhan.arabic}\n\n${sokhan.farsi}\n\n${sokhan.refrence}\n\n نرم افزار موبایل امیر سخن");
+                },
+                icon: const Icon(Icons.share)),
+            TextButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    actions: [Slider(
+                      value: provider.state.fontSize,
+                      onChanged: (value) {
+                        provider.changeFontSize(value);
+                      },
+                      divisions: 20,
+                      max: 40,
+                      min: 10,
+                      label: provider.state.fontSize.toString(),
+                      
+                    ),],
+                    
+                  ),
+                );
               },
-              divisions: 10,
-              max: 32,
-              min: 12,
-              label:provider.state.fontSize.toString(),
-              inactiveColor: Colors.white.withOpacity(.6),
-              activeColor: Colors.white,
+              child: const Text("اندازه متن", style: TextStyle(color: Colors.white),),
             ),
           ],
           title: IconButton(

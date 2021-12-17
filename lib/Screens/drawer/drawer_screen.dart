@@ -49,7 +49,7 @@ class DrawerScreen extends StatelessWidget {
                 icon: Icons.developer_mode,
                 context: context,
                 child: drawerInfoScreen(context,"devinfo"),),
-            TextButton(onPressed: ()async=> await launchWhatsApp(), child:ListTile(title: Text("تماس با ما"),leading: Image(image: AssetImage("assets/whatsapp.png"),height: 25,color: StateInheritWidget.of(context)!.state.primaryColor,),) ),
+            TextButton(onPressed: ()async=> await drawerLaunchWhatsApp(), child:ListTile(title: Text("تماس با ما"),leading: Image(image: AssetImage("assets/whatsapp.png"),height: 25,color: StateInheritWidget.of(context)!.state.primaryColor,),) ),
           ],
         ),
       ),
@@ -60,6 +60,7 @@ class DrawerScreen extends StatelessWidget {
 // ignore: non_constant_identifier_names
 DrawerView({required text, required icon, required child, required context}) {
   return TextButton(
+    
     onPressed: () async {
       return showDialog(context: context, builder: (context) => child);
     },
