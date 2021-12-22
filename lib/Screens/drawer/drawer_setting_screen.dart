@@ -9,6 +9,7 @@ class DrawerSettingScreen extends StatelessWidget {
     final provider = StateInheritWidget.of(context)!;
 
     return AlertDialog(
+      
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 40,

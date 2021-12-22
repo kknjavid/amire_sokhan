@@ -29,8 +29,7 @@ class SokhanContentBody extends StatelessWidget {
             ? SelectableText.rich(
                 query == null
                     ? TextSpan(text: content)
-                    : TextSpan(
-                        children: highlightOccurrences(content, query)),
+                    : TextSpan(children: highlightOccurrences(content, query)),
                 style: TextStyle(
                   fontSize: provider.state.fontSize,
                   height: 2,
@@ -51,20 +50,21 @@ class SokhanContentBody extends StatelessWidget {
 
 List<TextSpan> highlightOccurrences(String source, String query) {
   // ignore: unnecessary_null_comparison
-  if (query == null ||
-      query.isEmpty ||
-      !source.toLowerCase().contains(query.toLowerCase())) {
+  if (query == null || query.isEmpty || !source.contains(query)) {
     return [TextSpan(text: source)];
   }
-  final matches = query.toLowerCase().allMatches(source.toLowerCase());
+  final matches = query.allMatches(source);
 
   int lastMatchEnd = 0;
 
   final List<TextSpan> children = [];
   for (var i = 0; i < matches.length; i++) {
+    // print(matches);
     final match = matches.elementAt(i);
+    // print(match);
 
     if (match.start != lastMatchEnd) {
+      // print(match.start);
       children.add(TextSpan(
         text: source.substring(lastMatchEnd, match.start),
       ));

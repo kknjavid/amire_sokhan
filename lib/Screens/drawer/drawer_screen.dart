@@ -62,7 +62,7 @@ DrawerView({required text, required icon, required child, required context}) {
   return TextButton(
     
     onPressed: () async {
-      return showDialog(context: context, builder: (context) => child);
+      return showDialog(context: context, builder: (context) => child,barrierDismissible: false);
     },
     child: ListTile(
       title: Text(text),

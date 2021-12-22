@@ -32,22 +32,25 @@ class SokhanContentHead extends StatelessWidget {
                 await showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    actions: [Slider(
-                      value: provider.state.fontSize,
-                      onChanged: (value) {
-                        provider.changeFontSize(value);
-                      },
-                      divisions: 20,
-                      max: 40,
-                      min: 10,
-                      label: provider.state.fontSize.toString(),
-                      
-                    ),],
-                    
+                    actions: [
+                      Slider(
+                        value: provider.state.fontSize,
+                        onChanged: (value) {
+                          provider.changeFontSize(value);
+                        },
+                        divisions: 15,
+                        max: 40,
+                        min: 10,
+                        label: provider.state.fontSize.toInt().toString(),
+                      ),
+                    ],
                   ),
                 );
               },
-              child: const Text("اندازه متن", style: TextStyle(color: Colors.white),),
+              child: const Text(
+                "اندازه متن",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
           title: IconButton(
